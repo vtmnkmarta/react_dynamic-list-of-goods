@@ -8,17 +8,21 @@ export const App: React.FC = () => {
   const [goodsList, setGoodsList] = useState<Good[]>([]);
 
   const handleAllGoods = () => {
-    getAll().then(goods => {
-      setGoodsList(goods);
-    });
+    getAll()
+      .then(setGoodsList)
+      .catch(() => setGoodsList([]));
   };
 
-  const hahandle5First = () => {
-    get5First().then(setGoodsList);
+  const handle5First = () => {
+    get5First()
+      .then(setGoodsList)
+      .catch(() => setGoodsList([]));
   };
 
-  const hahandleRedGoods = () => {
-    getRedGoods().then(setGoodsList);
+  const handleRedGoods = () => {
+    getRedGoods()
+      .then(setGoodsList)
+      .catch(() => setGoodsList([]));
   };
 
   return (
@@ -29,15 +33,11 @@ export const App: React.FC = () => {
         Load all goods
       </button>
 
-      <button
-        type="button"
-        data-cy="first-five-button"
-        onClick={hahandle5First}
-      >
+      <button type="button" data-cy="first-five-button" onClick={handle5First}>
         Load 5 first goods
       </button>
 
-      <button type="button" data-cy="red-button" onClick={hahandleRedGoods}>
+      <button type="button" data-cy="red-button" onClick={handleRedGoods}>
         Load red goods
       </button>
 
